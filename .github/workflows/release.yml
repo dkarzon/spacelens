@@ -1,0 +1,71 @@
+# Builds the package, stamps the version and SHA256 into the .plg files, commits them,
+# tags the commit and publishes a GitHub release with the .txz attached.
+# Run it from Actions > Release > Run workflow.
+#
+# Version: yyyy.MM.dd (today's date in TZ below), zero-padded so Unraid's string compare
+# sorts it. A second build on the same day gets a letter: 2026.10.02, 2026.10.02a, ...
+name: Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Two runs at once could pick the same version.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  TZ: Australia/Brisbane
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pick version
+        id: version
+        run: |
+          BASE=$(date +%Y.%m.%d)
+          VERSION=$BASE
+          for SUFFIX in '' {a..z}; do
+            VERSION="$BASE$SUFFIX"
+            git rev-parse -q --verify "refs/tags/$VERSION" >/dev/null || break
+          done
+          if git rev-parse -q --verify "refs/tags/$VERSION" >/dev/null; then
+            echo "::error::No version left for $BASE (a to z all used)"
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Version $VERSION"
+
+      - name: Build
+        run: bash build.sh "${{ steps.version.outputs.version }}"
+
+      - name: Commit and tag
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add spacelens.plg spacelens-local.plg
+          git commit -m "Release $VERSION"
+          git tag "$VERSION"
+          git push origin "HEAD:${{ github.ref_name }}" "refs/tags/$VERSION"
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          gh release create "$VERSION" \
+            "dist/spacelens-$VERSION-x86_64-1.txz" \
+            dist/spacelens-local.plg \
+            --title "Spacelens $VERSION" \
+            --generate-notes

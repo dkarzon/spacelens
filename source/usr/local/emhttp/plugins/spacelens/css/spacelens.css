@@ -1,0 +1,174 @@
+/* Spacelens. Colours inherit from the Unraid theme so light and dark both work. */
+#spacelens {
+  --sl-border: rgba(128, 128, 128, 0.35);
+  --sl-hover: rgba(128, 128, 128, 0.12);
+  --sl-accent: #e68a00;
+  max-width: 1200px;
+}
+
+#spacelens .sl-intro { margin: 0 0 16px; }
+#spacelens .sl-heading { margin: 24px 0 10px; }
+#spacelens .sl-muted { opacity: 0.7; font-size: 0.92em; }
+#spacelens .sl-error { color: #d9534f; }
+
+#spacelens .sl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+#spacelens .sl-list { display: flex; flex-direction: column; gap: 4px; }
+
+#spacelens .sl-card,
+#spacelens .sl-row,
+#spacelens .sl-selected {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: transparent;
+  border: 1px solid var(--sl-border);
+  border-radius: 6px;
+  margin: 0;
+}
+
+#spacelens .sl-card { padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px; }
+#spacelens .sl-row {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) 2fr auto;
+  gap: 12px;
+  align-items: center;
+}
+#spacelens .sl-card:hover,
+#spacelens .sl-row:hover { background: var(--sl-hover); }
+#spacelens .sl-active { border-color: var(--sl-accent); box-shadow: 0 0 0 1px var(--sl-accent); }
+
+#spacelens .sl-selected { padding: 12px 16px; margin-bottom: 8px; }
+#spacelens .sl-card-title { font-weight: bold; }
+#spacelens .sl-row-name { font-weight: bold; }
+
+#spacelens .sl-badge {
+  font-size: 0.8em;
+  font-weight: normal;
+  padding: 1px 6px;
+  border: 1px solid var(--sl-border);
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+#spacelens .sl-bar { height: 8px; border-radius: 4px; background: var(--sl-hover); overflow: hidden; margin: 6px 0 4px; }
+#spacelens .sl-bar-fill { height: 100%; background: var(--sl-accent); }
+
+/* Selected target */
+#spacelens .sl-panel {
+  padding: 12px 16px;
+  margin: 8px 0 16px;
+  border: 1px solid var(--sl-border);
+  border-radius: 6px;
+}
+#spacelens .sl-scan-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+#spacelens .sl-actions button { margin: 0; }
+#spacelens .sl-ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#spacelens .sl-pre { white-space: pre-wrap; font-size: 0.9em; margin: 6px 0 0; }
+#spacelens .sl-progress { height: 10px; }
+#spacelens .sl-indeterminate .sl-bar-fill { animation: sl-slide 1.4s ease-in-out infinite; }
+@keyframes sl-slide { from { margin-left: -30%; } to { margin-left: 100%; } }
+
+#spacelens .sl-link {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  min-width: 0;
+}
+#spacelens .sl-link:hover { color: var(--sl-accent); }
+
+/* Folder browser */
+#spacelens .sl-loading { opacity: 0.6; pointer-events: none; }
+#spacelens .sl-crumbs { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-weight: bold; }
+#spacelens .sl-sep { opacity: 0.5; }
+#spacelens .sl-folder-total { margin: 4px 0 8px; }
+
+#spacelens .sl-table { width: 100%; border-collapse: collapse; }
+#spacelens .sl-table th,
+#spacelens .sl-table td { padding: 6px 8px; border-bottom: 1px solid var(--sl-border); text-align: left; }
+#spacelens .sl-table .sl-num { text-align: right; white-space: nowrap; }
+#spacelens .sl-sortable { cursor: pointer; user-select: none; }
+#spacelens .sl-name { word-break: break-all; }
+#spacelens .sl-name .fa { width: 1.2em; opacity: 0.7; }
+#spacelens .sl-pct { width: 30%; }
+#spacelens .sl-pct .sl-bar { margin: 0; }
+#spacelens .sl-file .sl-bar-fill { opacity: 0.6; }
+#spacelens .sl-other .sl-bar-fill { opacity: 0.35; }
+
+/* Treemap and tabs */
+#spacelens .sl-treemap { width: 100%; height: 440px; margin: 8px 0 16px; }
+#spacelens .sl-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--sl-border); margin-bottom: 4px; }
+#spacelens .sl-tab {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 6px 12px;
+  margin: 0;
+  cursor: pointer;
+  opacity: 0.7;
+  min-width: 0;
+}
+#spacelens .sl-tab:hover { opacity: 1; }
+#spacelens .sl-tab-active { border-bottom-color: var(--sl-accent); opacity: 1; font-weight: bold; }
+#spacelens .sl-path { font-size: 0.85em; margin-left: 1.5em; }
+
+/* Disks a share's data lives on */
+#spacelens .sl-disks { margin-top: 6px; }
+#spacelens .sl-disk {
+  display: inline-block;
+  font-size: 0.85em;
+  padding: 0 6px;
+  margin: 1px 0;
+  border-radius: 3px;
+  background: var(--sl-hover);
+  white-space: nowrap;
+}
+#spacelens .sl-where { white-space: nowrap; }
+#spacelens .sl-asleep { color: #5b8def; }
+#spacelens .sl-badge.sl-asleep { border-color: #5b8def; }
+#spacelens .sl-badge.sl-warn { color: #d9822b; border-color: #d9822b; }
+
+/* Change since an earlier scan */
+#spacelens .sl-up { color: #e03131; }
+#spacelens .sl-down { color: #2f9e44; }
+#spacelens .sl-change { white-space: nowrap; }
+#spacelens .sl-bar-fill.sl-bar-up { background: #e03131; }
+#spacelens .sl-gone td { opacity: 0.7; }
+#spacelens .sl-gone .sl-name span { text-decoration: line-through; }
+
+#spacelens .sl-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; }
+#spacelens .sl-toolbar-controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+#spacelens .sl-toolbar-controls label { display: inline-flex; gap: 6px; align-items: center; margin: 0; }
+#spacelens .sl-toolbar-controls select { margin: 0; min-width: 0; }
+
+/* Scheduled scans */
+#spacelens .sl-schedule summary { cursor: pointer; }
+#spacelens .sl-schedule-form { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+#spacelens .sl-schedule-form label { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 0; }
+#spacelens .sl-schedule-form select,
+#spacelens .sl-schedule-form input { margin: 0; min-width: 0; }
+#spacelens .sl-schedule-form .sl-gb { width: 80px; }
+#spacelens .sl-schedule-form p { margin: 0; }
+
+@media (max-width: 600px) {
+  #spacelens .sl-where { display: none; }
+  #spacelens .sl-pct { display: none; }
+  #spacelens .sl-date { display: none; }
+  #spacelens .sl-treemap { height: 300px; }
+  #spacelens .sl-row { grid-template-columns: 1fr auto; }
+  #spacelens .sl-row .sl-muted { display: none; }
+}

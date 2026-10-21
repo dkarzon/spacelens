@@ -1,0 +1,77 @@
+Menu="Utilities"
+Type="php"
+Title="Spacelens"
+Icon="pie-chart"
+Markdown="false"
+Cond="$var['fsState'] == 'Started'"
+---
+<?php
+$plugin = 'spacelens';
+?>
+<link type="text/css" rel="stylesheet" href="<?autov("/plugins/$plugin/css/spacelens.css")?>">
+
+<div id="spacelens">
+  <div id="sl-picker">
+    <p class="sl-intro">Pick a disk, pool or share to see what is using its space.</p>
+
+    <div id="sl-cache-section">
+      <h3 class="sl-heading">Cache</h3>
+      <div id="sl-cache" class="sl-grid"><span class="sl-muted">Loading…</span></div>
+    </div>
+
+    <div id="sl-pools-section">
+      <h3 class="sl-heading">Pools</h3>
+      <div id="sl-pools" class="sl-grid"><span class="sl-muted">Loading…</span></div>
+    </div>
+
+    <div id="sl-disks-section">
+      <h3 class="sl-heading">Array disks</h3>
+      <div id="sl-disks" class="sl-grid"><span class="sl-muted">Loading…</span></div>
+    </div>
+
+    <h3 class="sl-heading">Shares</h3>
+    <div id="sl-shares" class="sl-list"><span class="sl-muted">Loading…</span></div>
+  </div>
+
+  <div id="sl-view" hidden>
+    <button type="button" class="sl-link" data-action="back">&larr; Choose another disk or share</button>
+    <div id="sl-scanbar" class="sl-panel"></div>
+    <details id="sl-schedule" class="sl-panel sl-schedule"></details>
+    <div id="sl-message"></div>
+    <div id="sl-browser" hidden>
+      <div class="sl-toolbar">
+        <nav id="sl-crumbs" class="sl-crumbs"></nav>
+        <div class="sl-toolbar-controls">
+          <label id="sl-compare-wrap" hidden>Compare with
+            <select id="sl-compare"></select>
+          </label>
+          <label id="sl-colour-wrap" hidden>Colour by
+            <select id="sl-colour">
+              <option value="folder">folder</option>
+              <option value="growth">growth</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div id="sl-folder-total" class="sl-muted sl-folder-total"></div>
+      <div id="sl-treemap" class="sl-treemap"></div>
+      <div class="sl-tabs" role="tablist">
+        <button type="button" class="sl-tab sl-tab-active" data-tab="contents">Folder contents</button>
+        <button type="button" class="sl-tab" data-tab="largest">Largest files</button>
+        <button type="button" class="sl-tab" data-tab="growth">Growth</button>
+      </div>
+      <div id="sl-contents"></div>
+      <div id="sl-largest" hidden></div>
+      <div id="sl-growth" hidden></div>
+    </div>
+  </div>
+</div>
+
+<script>
+window.Spacelens = {
+  api: '/plugins/<?=$plugin?>/php/api.php',
+  csrf: <?=json_encode($var['csrf_token'])?>
+};
+</script>
+<script src="<?autov("/plugins/$plugin/js/vendor/echarts.min.js")?>"></script>
+<script src="<?autov("/plugins/$plugin/js/spacelens.js")?>"></script>

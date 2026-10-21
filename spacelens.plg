@@ -1,0 +1,81 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN [
+<!ENTITY name        "spacelens">
+<!ENTITY author      "dkarzon">
+<!ENTITY version     "2026.10.21e">
+<!ENTITY launch      "Settings/Spacelens">
+<!ENTITY github      "dkarzon/spacelens">
+<!ENTITY pluginURL   "https://raw.githubusercontent.com/&github;/main/&name;.plg">
+<!ENTITY pluginLOC   "/boot/config/plugins/&name;">
+<!ENTITY emhttpLOC   "/usr/local/emhttp/plugins/&name;">
+<!ENTITY packageFile "&name;-&version;-x86_64-1.txz">
+<!ENTITY packageURL  "https://github.com/&github;/releases/download/&version;/&packageFile;">
+<!ENTITY packageSHA  "224fe46e91b23f0a78029acc4abc9ccee37d38f8f7b45f605fa5ef01eb1c478a">
+]>
+
+<PLUGIN name="&name;"
+        author="&author;"
+        version="&version;"
+        launch="&launch;"
+        pluginURL="&pluginURL;"
+        icon="pie-chart"
+        min="6.12.0"
+        support="https://github.com/&github;/issues">
+
+<CHANGES>
+### &version;
+- Scan history: the last few scans are kept (HISTORY_KEEP). Compare with any of them: a Change column, deleted folders, and a treemap coloured by growth.
+- Growth tab: the folders where growth actually happened, anywhere below the current folder.
+- Scheduled scans (daily or weekly) with an optional Unraid notification when a target grows by more than a set amount.
+- User shares are scanned on each disk and pool directly (in parallel, not through /mnt/user) and merged. Every folder shows how much of it is on each disk.
+- Files with the same name in the same folder on more than one disk are flagged (the share only shows one).
+- Spun-down disks are marked, and a scan only asks to confirm when it will spin one up.
+- Treemap of the current folder (two levels deep), in sync with the table. Click a folder to open it.
+- Largest files tab: the biggest files under the current folder.
+- Hard-linked files are labelled.
+- Moved to Settings > User Utilities. Cache, other pools and array disks listed separately.
+- Fixed "Security token validation failed" when selecting a disk or share.
+- Background scans with progress, cancel and rescan.
+- Folder drill-down: subfolders and files sorted by size, with breadcrumbs.
+- Spacelens page with disk, pool and share picker.
+</CHANGES>
+
+<!-- Persistent folder on the flash drive: holds the downloaded package. -->
+<FILE Run="/bin/bash">
+<INLINE>
+mkdir -p &pluginLOC;
+exit 0
+</INLINE>
+</FILE>
+
+<!-- If the package already exists here with a matching SHA256 it is not downloaded again,
+     which is how local test installs work (see README). -->
+<FILE Name="&pluginLOC;/&packageFile;" Run="upgradepkg --install-new">
+<URL>&packageURL;</URL>
+<SHA256>&packageSHA;</SHA256>
+</FILE>
+
+<!-- Remove packages left over from older versions. -->
+<FILE Run="/bin/bash">
+<INLINE>
+find &pluginLOC; -maxdepth 1 -name '&name;-*.txz' ! -name '&packageFile;' -delete
+echo "Spacelens &version; installed."
+exit 0
+</INLINE>
+</FILE>
+
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+pkill -f '&emhttpLOC;/scripts/scan.sh' || true
+removepkg &name;-&version;-x86_64-1 || true
+rm -rf &emhttpLOC;
+rm -rf /tmp/&name;
+rm -rf &pluginLOC;
+# Drop the scheduled-scan cron entry (its .cron file was in &pluginLOC;).
+if [ -x /usr/local/sbin/update_cron ]; then /usr/local/sbin/update_cron; fi
+echo "Spacelens removed."
+exit 0
+</INLINE>
+</FILE>
+
+</PLUGIN>
