@@ -2,6 +2,10 @@
 
 An Unraid plugin that shows what is using the space on a disk, pool or share, TreeSize style, with drill-down.
 
+![Picking a disk, pool or share to scan](resources/home.png)
+
+![Treemap and folder contents for a share stored on two disks](resources/share.png)
+
 ## Layout
 
 ```

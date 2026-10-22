@@ -54,7 +54,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add spacelens.plg spacelens-local.plg
+          git add spacelens.plg
           git commit -m "Release $VERSION"
           git tag "$VERSION"
           git push origin "HEAD:${{ github.ref_name }}" "refs/tags/$VERSION"
@@ -66,6 +66,6 @@ jobs:
         run: |
           gh release create "$VERSION" \
             "dist/spacelens-$VERSION-x86_64-1.txz" \
-            dist/spacelens-local.plg \
+            dist/spacelens.plg \
             --title "Spacelens $VERSION" \
             --generate-notes
