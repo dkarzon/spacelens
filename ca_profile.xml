@@ -1,0 +1,9 @@
+<CommunityApplications>
+  <Profile>
+**Spacelens** is an Unraid plugin that shows what is using the space on a disk, pool or share, TreeSize style, with drill-down.
+
+For bugs and questions, open an issue on [GitHub](https://github.com/dkarzon/spacelens/issues).
+  </Profile>
+  <WebPage>https://github.com/dkarzon/spacelens</WebPage>
+  <Photo>https://github.com/dkarzon/spacelens/raw/main/resources/home.png</Photo>
+</CommunityApplications>

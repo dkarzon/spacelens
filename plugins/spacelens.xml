@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Plugin>
+  <Name>Spacelens</Name>
+  <Overview>Shows what is using the space on a disk, pool or share, TreeSize style, with drill-down. Scans run in the background at low priority and give a treemap, a folder table, the largest files, growth since earlier scans, and optional scheduled scans with notifications when a target grows. User shares are scanned on each disk and pool directly and merged, so every folder shows how much of it is on each disk.</Overview>
+  <!-- Must match pluginURL in spacelens.plg exactly -->
+  <PluginURL>https://raw.githubusercontent.com/dkarzon/spacelens/main/spacelens.plg</PluginURL>
+  <PluginAuthor>dkarzon</PluginAuthor>
+  <!-- Support comes from the support attribute in spacelens.plg -->
+  <Project>https://github.com/dkarzon/spacelens</Project>
+  <ReadMe>https://raw.githubusercontent.com/dkarzon/spacelens/main/README.md</ReadMe>
+  <Category>Tools:System</Category>
+  <IconFA>pie-chart</IconFA>
+  <Screenshot>https://raw.githubusercontent.com/dkarzon/spacelens/main/resources/home.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/dkarzon/spacelens/main/resources/share.png</Screenshot>
+</Plugin>
