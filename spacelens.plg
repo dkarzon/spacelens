@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name        "spacelens">
 <!ENTITY author      "dkarzon">
-<!ENTITY version     "2026.10.21e">
+<!ENTITY version     "2026.10.22">
 <!ENTITY launch      "Settings/Spacelens">
 <!ENTITY github      "dkarzon/spacelens">
 <!ENTITY pluginURL   "https://raw.githubusercontent.com/&github;/main/&name;.plg">
@@ -10,7 +10,7 @@
 <!ENTITY emhttpLOC   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY packageFile "&name;-&version;-x86_64-1.txz">
 <!ENTITY packageURL  "https://github.com/&github;/releases/download/&version;/&packageFile;">
-<!ENTITY packageSHA  "224fe46e91b23f0a78029acc4abc9ccee37d38f8f7b45f605fa5ef01eb1c478a">
+<!ENTITY packageSHA  "fdae3db672e184bcb8a181f7c85116280fb698ca60c818bc7256e05cc0465860">
 ]>
 
 <PLUGIN name="&name;"
