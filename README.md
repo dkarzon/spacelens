@@ -1,4 +1,4 @@
-# Spacelens
+# <img src="resources/a-treemap-lens.svg" alt="" width="48" height="48" align="absmiddle"> Spacelens
 
 An Unraid plugin that shows what is using the space on a disk, pool or share, TreeSize style, with drill-down.
 
@@ -14,6 +14,8 @@ build.sh                              builds dist/spacelens-<version>-x86_64-1.t
 dev-sync.sh                           pushes web files to a server for quick testing
 source/usr/local/emhttp/plugins/spacelens/
   Spacelens.page                      the Spacelens page (Settings > User Utilities)
+  images/spacelens.png                logo (Plugins list); spacelens-settings.png is the monotone Settings tile
+  icons/spacelens.png                 logo in the page title
   php/api.php                         JSON API used by the page
   php/lib.php                         helpers: CSRF check, path validation, target discovery
   js/spacelens.js                     page UI

@@ -9,7 +9,7 @@
   <Project>https://github.com/dkarzon/spacelens</Project>
   <ReadMe>https://raw.githubusercontent.com/dkarzon/spacelens/main/README.md</ReadMe>
   <Category>Tools:System</Category>
-  <IconFA>pie-chart</IconFA>
+  <Icon>https://raw.githubusercontent.com/dkarzon/spacelens/main/resources/a-treemap-lens.png</Icon>
   <Screenshot>https://raw.githubusercontent.com/dkarzon/spacelens/main/resources/home.png</Screenshot>
   <Screenshot>https://raw.githubusercontent.com/dkarzon/spacelens/main/resources/share.png</Screenshot>
 </Plugin>
