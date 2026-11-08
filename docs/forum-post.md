@@ -25,7 +25,7 @@ Spacelens scans a disk, pool or share once in the background and saves an index.
 
 ## Install
 
-Go to **Plugins → Install Plugin** and paste:
+Search for **Spacelens** in the **Apps** tab, or go to **Plugins → Install Plugin** and paste:
 
 `https://raw.githubusercontent.com/dkarzon/spacelens/main/spacelens.plg`
 

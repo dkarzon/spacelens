@@ -20,7 +20,7 @@
         pluginURL="&pluginURL;"
         icon="spacelens.png"
         min="6.12.0"
-        support="https://github.com/&github;/issues">
+        support="https://forums.unraid.net/topic/201144-plugin-spacelens-see-what-uses-space/">
 
 <CHANGES>
 ### &version;
