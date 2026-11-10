@@ -5,10 +5,12 @@
   <!-- Must match pluginURL in spacelens.plg exactly -->
   <PluginURL>https://raw.githubusercontent.com/dkarzon/spacelens/main/spacelens.plg</PluginURL>
   <PluginAuthor>dkarzon</PluginAuthor>
-  <!-- Support comes from the support attribute in spacelens.plg -->
+  <!-- Keep Support and MinVer in step with the support and min attributes in spacelens.plg -->
+  <Support>https://forums.unraid.net/topic/201144-plugin-spacelens-see-what-uses-space/</Support>
+  <MinVer>6.12.0</MinVer>
   <Project>https://github.com/dkarzon/spacelens</Project>
   <ReadMe>https://raw.githubusercontent.com/dkarzon/spacelens/main/README.md</ReadMe>
-  <Category>Tools:System</Category>
+  <Category>Tools:Utilities</Category>
   <License>MIT</License>
   <Icon>https://raw.githubusercontent.com/dkarzon/spacelens/main/resources/a-treemap-lens.png</Icon>
   <Screenshot>https://raw.githubusercontent.com/dkarzon/spacelens/main/resources/home.png</Screenshot>
